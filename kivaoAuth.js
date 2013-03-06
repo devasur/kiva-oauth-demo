@@ -109,7 +109,6 @@ exports.$.prototype.getOAuthAccessToken =
     req.session.oauth_token_secret, 
     req.param('oauth_verifier'), 
     function(error, oauth_access_token, oauth_access_token_secret, results) {
-
       if(error) {
           console.log(error);
           resp.send(error.data, error.statusCode)
@@ -117,10 +116,10 @@ exports.$.prototype.getOAuthAccessToken =
       else {
         var access = {"access_token":oauth_access_token,"access_token_secret":oauth_access_token_secret};
         kivaoauth.getAccount(access,function(data){
-          var account = data;
+          var account = JSON.parse(data).user_account;
           kivaoauth.getEmail(access,function(data){
-            var email = data;
-            callback({"access":access,"account":account,"email":email});
+            var email = JSON.parse(data).user_email;
+            callback({"access":access,"user_account":account,"user_email":email});
           })
         })
       }
