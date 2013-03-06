@@ -1,20 +1,25 @@
-exports.$ = function(app_id, client_id, client_secret, _scopes, _callbackURL){
-  this.version = "1.0";
-  this.signatureMethod = "HMAC-SHA1";
-  this.oauth = require('oauth');
-  this.appid = app_id;
-  this.clientid=client_id;
-  this.clientsecret = client_secret;
-  this.scopes = _scopes;
-  this.callbackURL = _callbackURL;
-  this.authurl = "https://www.kiva.org/oauth/authorize?" +
-                                            "scope=" + this.scopes.toString() + 
-                                            "&response_type=code" + 
-                                            "&oauth_callback=" + this.callbackURL + 
-                                            "&client_id=" + this.clientid;
 
-  this.requesttokenurl = "https://api.kivaws.org/oauth/request_token";
-  this.accesstokenurl = "https://api.kivaws.org/oauth/access_token";
+var kivaOauth = "https://www.kiva.org/oauth";
+var requesttokenurl = "https://api.kivaws.org/oauth/request_token";
+var accesstokenurl = "https://api.kivaws.org/oauth/access_token";
+
+
+exports.$ = function(app_id, client_id, client_secret, _scopes, _callbackURL){
+  var _ = require('./myapp.js');
+  this.oauth = require('oauth');
+  this.version = "1.0";
+  this.signatureMethod = "HMAC-SHA1";  
+  this.appid = _.appid;
+  this.clientid=_.clientid;
+  this.clientsecret = _.clientsecret;
+  this.scopes = _.scopes;
+  this.callbackURL = _.callbackURL;
+  this.authurl = kivaOauth + "/authorize?" +
+                        "scope=" + this.scopes.toString() + 
+                        "&response_type=code" + 
+                        "&oauth_callback=" + this.callbackURL + 
+                        "&client_id=" + this.clientid;
+
   
   this._getProtectedResource =
   function ( access, url, callback){
@@ -32,8 +37,8 @@ exports.$ = function(app_id, client_id, client_secret, _scopes, _callbackURL){
 
   this.getNewOauth = function(){
     return        new this.oauth.OAuth(
-                      this.requesttokenurl,
-                      this.accesstokenurl,
+                      requesttokenurl,
+                      accesstokenurl,
                       this.clientid,
                       this.clientsecret,
                       this.version,
@@ -45,9 +50,11 @@ exports.$ = function(app_id, client_id, client_secret, _scopes, _callbackURL){
 };
 
 
+var kivaApi = "https://api.kivaws.org/v1";
+
 exports.$.prototype.getLender = function (access, callback)
 {
-  this._getProtectedResource(access, "https://api.kivaws.org/v1/my/lender.json",function(data){
+  this._getProtectedResource(access, kivaApi + "/my/lender.json",function(data){
     callback(data);
   });
 };
@@ -55,21 +62,21 @@ exports.$.prototype.getLender = function (access, callback)
 
 exports.$.prototype.getEmail = function (access, callback)
 {
-  this._getProtectedResource(access, "https://api.kivaws.org/v1/my/email.json",function(data){
+  this._getProtectedResource(access, kivaApi + "/my/email.json",function(data){
     callback(data);
   });
 };
 
 exports.$.prototype.getBalance = function (access, callback)
 {
-  this._getProtectedResource(access, "https://api.kivaws.org/v1/my/balance.json",function(data){
+  this._getProtectedResource(access, kivaApi + "/my/balance.json",function(data){
     callback(data);
   });
 };
 
 exports.$.prototype.getAccount = function (access, callback)
 {
-  this._getProtectedResource(access, "https://api.kivaws.org/v1/my/account.json",function(data){
+  this._getProtectedResource(access, kivaApi + "/my/account.json",function(data){
     callback(data);
   });
 };

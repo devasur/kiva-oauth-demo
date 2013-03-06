@@ -12,8 +12,7 @@ app.get('/', function(req, resp) {
 	resp.sendfile('authenticatetokiva.html');
 });
 
-var _ = require('./demoapp.js');
-var kivaoAuth = new (require('./kivaoAuth.js')).$(_.appid,_.clientid,_.clientsecret,_.scopes,_.callbackURL);
+var kivaoAuth = new (require('./kivaoAuth.js')).$();
 app.get('/auth/kiva', function(req,resp){
 	kivaoAuth.getOAuthRequestToken(req,resp);
 });
