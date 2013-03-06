@@ -1,11 +1,15 @@
 Demo for Kiva oAuth
 ===================
 
+This application demonstrates how to use node-oauth to authorize access for protected APIs on Kiva.  The target application is a demo app registered on Kiva for Demo purpose only.  It has a dummy callback url (http://test.bonigopalan.com:3000/auth/kiva/callback) that you need to spoof by editing hosts file.  Basic authorization flow is demonstrated and I will be adding some more buttons to show how to access individual protected resource APIs published by Kiva.
+
+http://build.kiva.org/docs/data/protected_resources
+
 Pre Requisites
 ============
 -You need Node and npm installed and configured.  
 
--You need to add an entry in the local hosts file to spook localhost (127.0.0.1) as test.bonigopalan.com.  In windows usually this file is under C:/Windows/System32/drivers/etc/hosts.  In Linux it is usually under /etc/hosts.  This entry is required because in my code I am using a pre registered demo app on Kiva end.  For oAuth to work correctly you need to match the callback url as it is configured on the Kiva End.
+-You need to add an entry in the local hosts file to spoof localhost (127.0.0.1) as test.bonigopalan.com.  In windows usually this file is under C:/Windows/System32/drivers/etc/hosts.  In Linux it is usually under /etc/hosts.  This entry is required because in my code I am using a pre registered demo app on Kiva end.  For oAuth to work correctly you need to match the callback url as it is configured on the Kiva End.
 
 http://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/
 
@@ -16,7 +20,7 @@ Instalation
 2. npm install<br>
 3. node app.js<br>
 
-Navigate to http://test.bonigopalan.com:3000 (This is infact your localhost, and we are spooking it through the fake DNS entry in the hosts file).  Click on 'Authenticate with Kiva' button.
+Navigate to http://test.bonigopalan.com:3000 (This is infact your localhost, and we are spofing it through the fake DNS entry in the hosts file).  Click on 'Authenticate with Kiva' button.
 
 To USE it with your app
 =======================
