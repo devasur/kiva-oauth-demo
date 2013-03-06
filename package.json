@@ -1,0 +1,22 @@
+{
+  "name": "kiva-oauth-example",
+  "description": "Kiva oAuth Server",
+  "version": "0.0.1",
+  "scripts": {
+        "start": "node app.js"
+  },  
+"author": {
+    "name": "Boni Gopalan",
+    "email": "devasur3@gmail.com",
+    "url": "http://whiteboardjunkie.wordpress.com"
+  },
+  "licenses": [ {
+    "type": "MIT",
+    "url": "http://www.opensource.org/licenses/MIT" 
+  } ],  
+  "private": true,
+  "dependencies": {
+    "express": "3.x",
+    "oauth":"0.9.x"
+  }
+}
