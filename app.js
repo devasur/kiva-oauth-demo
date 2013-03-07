@@ -30,7 +30,7 @@ app.get('/auth/kiva', function(req,resp){
 		kivaoAuth.getOAuthRequestToken(req,resp);
 	}
 	else{
-		console.log("User Already Logged in")
+		//console.log("User Already Logged in")
 		resp.sendfile(__dirname  + '/public/checkstuff.html')
 	}
 
@@ -50,9 +50,9 @@ app.get('/balance',function(req,resp){
 			resp.send("Not authorized",401);
 			return;
 		}
-		console.log(req.session.user.access);
+		//console.log(req.session.user.access);
 		kivaoAuth.getBalance(req.session.user.access,function(data){
-			console.log(data);
+			//console.log(data);
 			resp.send(data);
 		});
 })

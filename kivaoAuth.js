@@ -87,7 +87,7 @@ exports.$.prototype.getOAuthRequestToken =
     var kivaUrl = this.authurl;
     oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
         if (error) {
-          console.log(error);
+          //console.log(error);
           resp.send(error.data, 500);
         } else {
           req.session.oa = oa;
@@ -110,7 +110,7 @@ exports.$.prototype.getOAuthAccessToken =
     req.param('oauth_verifier'), 
     function(error, oauth_access_token, oauth_access_token_secret, results) {
       if(error) {
-          console.log(error);
+          //console.log(error);
           resp.send(error.data, error.statusCode)
       }
       else {
