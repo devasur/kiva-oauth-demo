@@ -1,7 +1,7 @@
 Demo for Kiva oAuth
 ===================
 
-This application demonstrates how to use node-oauth to authorize access for protected APIs on Kiva.  The target application is a demo app registered on Kiva for Demo purpose only.  It has a dummy callback url (http://test.bonigopalan.com:3000/auth/kiva/callback) that you need to spoof by editing hosts file.  Basic authorization flow is demonstrated and I will be adding some more buttons to show how to access individual protected resource APIs published by Kiva.
+This application demonstrates how to use node-oauth to authorize access for protected APIs on Kiva.  The target application is a demo app registered on Kiva for Demo purpose only.  It has a dummy callback url (http://test.bonigopalan.com:3000/auth/kiva/callback) that you need to spoof by editing hosts file.  Basic authorization flow is demonstrated and I will be adding some more buttons to show how to access individual protected resource APIs published by Kiva.  Appliationcation demonstrates how to authorize with Kiva on user's behalf and query USer information.  For demonstration purposes the access_token and access_secret information for the user is kept in the user session.
 
 http://build.kiva.org/docs/data/protected_resources
 
@@ -16,9 +16,11 @@ http://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/
 
 Instalation
 ===========
-1. cd server<br>
-2. npm install<br>
-3. node app.js<br>
+1. cd to clone dir
+2. create a file named cryptkey.js with the following content
+	exports.key = "my_secret_crypt_key"; //replace the string my_secret_crypt_key to something you like.
+3. npm install<br>
+4. node app.js<br>
 
 Navigate to http://test.bonigopalan.com:3000 (This is infact your localhost, and we are spofing it through the fake DNS entry in the hosts file).  Click on 'Authenticate with Kiva' button.
 
@@ -26,9 +28,8 @@ To USE it with your app
 =======================
 - Register your application with Kiva : https://build.kiva.org/apps
 - Replace the appid, clientid, clientsecret and callbackurl in demoapp.js with your own values from the registration dashboard.
-- Edit the exports.scopes array in demoapp.js to match the scopes your appliction needs.
-- In the current flow, /auth/kiva will trigger the authorization routine and on success you will get a callback with some important user account information as a JSON array at route /auth/kiva/callback.  The demo app just pushes the data to the browser.  You can decide whatever you want to do with this data.  May be you want to save the access_token and access_secret into a secure location for querying kiva later?
-
+- Edit the exports.scopes array in myapp.js to match the scopes your appliction needs.
+- The demo aplication keeps access_token and access_secret in the user session. Nothing is persisted.  Quite likely you will want to persist it and use later.
 
 Important
 =========
