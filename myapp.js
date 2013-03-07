@@ -1,6 +1,6 @@
-exports.appid = "BnklpFwiowLxxvtk";
-exports.clientid="BnklpFwiowLxxvtk";
-exports.clientsecret = "CubzjwzGyutnnrApHDBvnCrGwEovzsDd";
+exports.appid = "com.bonigopalan.test";
+exports.clientid="com.bonigopalan.test";
+exports.clientsecret = "pxIvokqHsvogHdvjDCArwyqvdxrMEkrC";
 
 exports.scopes = [
     "access",
