@@ -1,0 +1,1 @@
+exports.key = "my_secret_key"; //Replace my_secret_key with something else and rename this file to cryptkey.js
